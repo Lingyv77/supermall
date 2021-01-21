@@ -20,8 +20,8 @@ export default {
   },
   components: {
     NavBar,
-    // Swiper,
-    // SwiperItem
+    Swiper,
+    SwiperItem
   },
   created() {
     //1.请求多个数据
