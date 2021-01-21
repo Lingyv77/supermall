@@ -25,8 +25,8 @@
 
 <script>
 //template中元素src使用别名要加~(别名) script使用则直接(别名)
-import TabBar from 'components/tabbar/TabBar'
-import TabBarItem from 'components/tabbar/TabBarItem'
+import TabBar from 'components/common/tabbar/TabBar'
+import TabBarItem from 'components/common/tabbar/TabBarItem'
 
 export default {
   name: 'MainTabBar',
