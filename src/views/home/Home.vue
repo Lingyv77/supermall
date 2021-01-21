@@ -1,13 +1,14 @@
 <template>
   <div>
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <h2>首页</h2> 
+    <swiper></swiper>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
 import {getHomeMultidata} from 'network/home'
+import {Swiper,SwiperItem} from 'components/common/swiper/index'
 
 export default {
   name: 'home',
@@ -18,7 +19,9 @@ export default {
     }
   },
   components: {
-    NavBar
+    NavBar,
+    // Swiper,
+    // SwiperItem
   },
   created() {
     //1.请求多个数据
