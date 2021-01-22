@@ -2,7 +2,7 @@
   <div>
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
     <home-swiper :banners="banners"/>
-    <recommend-view :recommend="recommend" />
+    <recommend-view :recommend="recommend"/>
   </div>
 </template>
 
@@ -23,7 +23,8 @@
     },
     components: {
       NavBar,
-      HomeSwiper
+      HomeSwiper,
+      RecommendView
     },
     created() {
       //1.请求多个数据

@@ -6,6 +6,7 @@
         <div>{{itme.title}}</div>
       </a>
     </div>
+    {{recommend}}
   </div>
 </template>
 
