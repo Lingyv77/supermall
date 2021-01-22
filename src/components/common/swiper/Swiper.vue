@@ -78,7 +78,7 @@ export default {
       this.scrolling = true;
       
       // 1.开始滚动动画
-      this.swiperStyle.transition = 'transform' + this.animDuration + 'ms';
+      this.swiperStyle.transition ='transform '+ this.animDuration + 'ms';
       this.setTransform(currentPosition);
 
       // 2.判断滚动到的位置
@@ -163,9 +163,9 @@ export default {
       // 2.判断最终的距离
       if(this.distance === 0) {
         return;
-      }else if(this.distance > 0 && currentMove > this.totalWidth * this.moveRatio) { // 右边移动超过0.5
+      }else if(this.distance > 0 && currentMove >= this.totalWidth * this.moveRatio) { // 右边移动超过0.5
         this.currentIndex--;
-      }else if(this.distance < 0 && currentMove > this.totalWidth * this.moveRatio) { // 左边移动超过0.5
+      }else if(this.distance < 0 && currentMove >= this.totalWidth * this.moveRatio) { // 左边移动超过0.5
         this.currentIndex++;
       }
 
