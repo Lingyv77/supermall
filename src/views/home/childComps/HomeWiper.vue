@@ -16,7 +16,9 @@
     props: {
       banners: {
         type: Array,
-        default: []
+        default() {
+          return []
+        }
       }
     },
     components: {
