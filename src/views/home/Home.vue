@@ -2,7 +2,7 @@
   <div>
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
     <home-swiper :banners="banners"/>
-    <recommend-view :recommend="recommend"/>
+    <recommend-view :recommends="recommend"/>
   </div>
 </template>
 
