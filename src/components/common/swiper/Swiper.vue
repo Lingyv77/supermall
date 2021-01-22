@@ -78,7 +78,7 @@ export default {
       this.scrolling = true;
       
       // 1.开始滚动动画
-      this.swiperStyle.transition = 'transform' + this.animDuration + 'sm';
+      this.swiperStyle.transition = 'transform' + this.animDuration + 'ms';
       this.setTransform(currentPosition);
 
       // 2.判断滚动到的位置
