@@ -27,7 +27,7 @@ export default {
   .recommend-wrap {
 		display: flex;
 		background-color: #fff;
-		font-size: 12px;
+    font-size: 12px; 
 		padding: 10px 0 20px;
 		border-bottom: 10px solid #ededed;
   }
@@ -39,7 +39,7 @@ export default {
 
   .recommend-item a {
     text-decoration: none;
-    color: rgb(111, 72, 72);
+    color: rgb(90, 17, 17);
   }
 
   .recommend-item a:active {
