@@ -25,8 +25,6 @@ export function request(config) {
   return instance(config)
 }
 
-axios.get("/").then(console.log)
-
 // export function tianmao(config) {
 //   //1.创建axios实例
 //   const instance2 = axios.create({
