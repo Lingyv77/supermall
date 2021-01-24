@@ -119,23 +119,7 @@
   import TabControl from 'components/content/tabControl/TabControl'
   
   import {getHomeMultidata} from 'network/home'
-/*
-https://img10.360buyimg.com/n7/  (+imgUrl) {"image_url":'xxxurlxxx'} //img
-{"link_url":"https://item.jd.com/67879423885.html"} //link
-{"ad_title":"如素慢衣休闲苎麻宽松V领套头系带七分袖连衣裙<font class=\"skcolor_ljg\">女</font>长裙21211 白色 均码",}  //描述
-{"pc_price":"219"} //单价
-{"comment_num":"517"} //评价
-"shop_link":{
-{
-"shop_name":"如素慢衣旗舰店", //店家
-"good_shop":"0"
-}
-}
-https://item.jd.com/59092261390.html (PC端link)
-https://item.m.jd.com/product/59092261390.html (移动端link)
 
-https://search-x.jd.com/Search?callback=jQuery5473245&area=21&enc=utf-8&keyword=%E6%9C%8D%E8%A3%85%E5%A5%B3%E6%BD%AE%E6%B5%81&adType=7&page=1&ad_ids=291%3A33&xtest=new_search&_=1611398589572
-*/
   export default {
     name: 'home',
     data() {
@@ -162,7 +146,11 @@ https://search-x.jd.com/Search?callback=jQuery5473245&area=21&enc=utf-8&keyword=
         this.banners = res.data.banner.list;
         this.recommend = res.data.recommend.list;
       })
-      // getHomeGoods().then()
+
+      this.$axios.get('/pop').then(console.log)
+      this.$axios.get('/news').then(console.log)
+      this.$axios.get('/sell').then(console.log)
+      // this.$axios.get('/baidu').then(console.log)
     }
   }
 </script>
