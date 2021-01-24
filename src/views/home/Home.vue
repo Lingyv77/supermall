@@ -141,16 +141,25 @@
       TabControl
     },
     created() {
-      //1.请求多个数据
-      getHomeMultidata().then(res => {
-        this.banners = res.data.banner.list;
-        this.recommend = res.data.recommend.list;
-      })
+      //请求多个数据
+      this.getHomeMultidata();
 
-      this.$axios.get('/pop').then(console.log)
-      this.$axios.get('/news').then(console.log)
-      this.$axios.get('/sell').then(console.log)
-      // this.$axios.get('/baidu').then(console.log)
+      //请求商品数据
+      this.getHomeGoods();
+    },
+    methods: {
+      getHomeMultidata() {
+        getHomeMultidata().then(res => {
+          this.banners = res.data.banner.list;
+          this.recommend = res.data.recommend.list;
+        })
+      },
+
+      getHomeGoods() {
+        this.$axios.get('/pop').then(res => {this.goods.pop = res.data.result.wall.docs})
+        this.$axios.get('/news').then(res => {this.goods.news = res.data.result.wall.docs})
+        this.$axios.get('/sell').then(res => {this.goods.sell = res.data.result.wall.docs})
+      }
     }
   }
 </script>
