@@ -20,6 +20,6 @@ export default {
     right: 0;
     bottom:0;
 
-    box-shadow: 0 -3px 5px rgb(250, 241, 241) ;
+    box-shadow: 0 -1px 0px rgb(230, 223, 223) ;
   }
 </style>
