@@ -1,7 +1,11 @@
 <template>
     <div id="home">
           <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-          <scroll class="content" ref="scroll">
+          <scroll class="content" ref="scroll" 
+          :probeType="3" 
+          :pullUpLoad="true"
+          @scroll="contentScroll"
+          @pullingUp="loadMore">
               <home-swiper :banners="banners"/>
               <recommend-view :recommends="recommend"/>
               <feature-view/>
@@ -9,7 +13,7 @@
               <goods-list :goods="showGoods"/>
           </scroll>
 
-          <back-top @click.native="backTopClick"/>
+          <back-top @click.native="backTopClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -38,7 +42,8 @@
           'news': {page: 0, list: []},
           'sell': {page: 0, list: []}
         },
-        currentType: 'pop'
+        currentType: 'pop',
+        isShowBackTop: false
       }
     },
     components: {
@@ -83,6 +88,16 @@
       },
       backTopClick() {
         this.$refs.scroll.scrollTo(0,0);
+      },
+      contentScroll(position) {
+        if(-(position.y) >= 1000) {
+          this.isShowBackTop = true;
+        }else {
+          this.isShowBackTop = false;
+        }
+      },
+      loadMore() {
+        console.log('上拉加载更多')
       },
 
       /**

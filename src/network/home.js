@@ -5,3 +5,9 @@ export function getHomeMultidata() {
     url: '/home/multidata'
   })
 }
+
+// const {proxy} = require('./proxy');
+
+// export function getHomeGoods(page) {
+//   proxy.setProxy(page)
+// }
