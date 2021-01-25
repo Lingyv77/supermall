@@ -13,7 +13,7 @@ module.exports = {
     },
     devServer: {
       open: false,
-      port: 8801, // 自定义修改8080端口
+      port: 8080, // 自定义修改8080端口
       // 代理跨域
       proxy
     }
