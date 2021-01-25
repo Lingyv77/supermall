@@ -1,15 +1,15 @@
 <template>
-    <div class="home">
-        <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-        <div class="wrapper">
-            <div class="content">
-                <home-swiper :banners="banners"/>
-                <recommend-view :recommends="recommend"/>
-                <feature-view/>
-                <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"/>
-                <goods-list :goods="showGoods"/>
-            </div>
-        </div>
+    <div id="home">
+          <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+          <scroll class="content" ref="scroll">
+              <home-swiper :banners="banners"/>
+              <recommend-view :recommends="recommend"/>
+              <feature-view/>
+              <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"/>
+              <goods-list :goods="showGoods"/>
+          </scroll>
+
+          <back-top @click.native="backTopClick"/>
   </div>
 </template>
 
@@ -21,10 +21,11 @@
   import NavBar from 'components/common/navbar/NavBar'
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodsList from 'components/content/goods/GoodsList'
+  import Scroll from 'components/common/scroll/Scroll'
+  import BackTop from 'components/content/backTop/BackTop'
   
   import {getHomeMultidata} from 'network/home'
 
-  import BScroll from 'better-scroll'
 
   export default {
     name: 'home',
@@ -46,7 +47,9 @@
       RecommendView,
       FeatureView,
       TabControl,
-      GoodsList
+      GoodsList,
+      Scroll,
+      BackTop
     },
     computed: {
       showGoods() {
@@ -78,6 +81,9 @@
             break
        }
       },
+      backTopClick() {
+        this.$refs.scroll.scrollTo(0,0);
+      },
 
       /**
        * 网络请求相关方法
@@ -97,9 +103,11 @@
   }
 </script>
 
-<style>
-  .home {
+<style scoped>
+  #home {
     padding-top: 44px;
+    height: 100vh;
+    box-sizing: border-box;
   }
 
   .home-nav {
@@ -115,5 +123,10 @@
   .tab-control {
     position: sticky;
     top: 44px;
+  }
+
+  .content {
+    height: calc(100% - 49px);
+    overflow: hidden;
   }
 </style>
