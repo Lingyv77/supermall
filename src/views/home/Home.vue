@@ -1,11 +1,15 @@
 <template>
-  <div class="home">
-    <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <home-swiper :banners="banners"/>
-    <recommend-view :recommends="recommend"/>
-    <feature-view/>
-    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"/>
-    <goods-list :goods="showGoods"/>
+    <div class="home">
+        <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+        <div class="wrapper">
+            <div class="content">
+                <home-swiper :banners="banners"/>
+                <recommend-view :recommends="recommend"/>
+                <feature-view/>
+                <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"/>
+                <goods-list :goods="showGoods"/>
+            </div>
+        </div>
   </div>
 </template>
 
@@ -19,6 +23,8 @@
   import GoodsList from 'components/content/goods/GoodsList'
   
   import {getHomeMultidata} from 'network/home'
+
+  import BScroll from 'better-scroll'
 
   export default {
     name: 'home',

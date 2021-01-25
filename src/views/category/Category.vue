@@ -110,17 +110,27 @@
   
   export default {
     name: 'Category',
-    /**
-     * 组件创建完后调用
-     */
-    created() {
-      // console.log(document.querySelector('.wrapper')) //获取为空
-      // new BScroll('.wrapper',{
-      // })
+    data() {
+      return {
+        srcoll: null
+      }
     },
     mounted() {
-      // console.log(document.querySelector('.wrapper'))
-      new BScroll('.wrapper')
+      this.scroll = new BScroll('.wrapper', {
+        probeType: 3,
+        pullUpLoad: true
+      });
+
+      this.scroll.on('scroll', position => {
+        console.log(position);
+      })
+
+      this.scroll.on('pullingUp', () => {
+        console.log('上拉加载');
+        setTimeout(() => {
+          this.scroll.finishPullUp();
+        }, 1000);
+      })
     }
   }
 </script>

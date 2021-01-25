@@ -1,4 +1,4 @@
-export default {
+const proxy = {
   '/pop': {
     target: 'https://list.mogu.com/search?_version=8253&ratio=3%3A4&cKey=46&sort=pop&page=1&q=%25E6%25B5%2581%25E8%25A1%258C&minPrice=&maxPrice=&ppath=&cpc_offset=&ptp=32.rPCjb.0.0.ftGyFhWZ&_=1611466992608&callback=jsonp1',
     changeOrigin: true
@@ -12,3 +12,5 @@ export default {
     changeOrigin: true
   }
 }
+
+module.exports.proxy = proxy;

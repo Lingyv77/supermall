@@ -1,4 +1,4 @@
-const proxy = require('src/network/proxy')
+const {proxy} = require('./src/network/proxy');
 
 module.exports = {
   configureWebpack: {
