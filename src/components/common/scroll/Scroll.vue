@@ -32,7 +32,6 @@
       }
     },
     mounted() {
-      setTimeout(() => { 
         //创建BScroll对象
         this.bscroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
@@ -49,7 +48,6 @@
         this.bscroll.on('pullingUp', () => {
           this.$emit('pullingUp');
         })
-      }, 1500);
     },
     methods: {
       scrollTo(x, y, time = 500) {

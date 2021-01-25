@@ -101,6 +101,7 @@
       loadMore() {
         console.log('上拉加载更多');
         this.getHomeGoods(this.currentType);
+        this.$refs.scroll.bscroll.refresh(); //重新刷新BScroll
       },
 
       /**
@@ -116,7 +117,7 @@
         const page = this.goods[type].page + 1;
         this.$axios.get(type+page).then(res => {this.goods[type].list.push(...res.data.result.wall.docs)});
         this.goods[type].page += 1;
-
+        
         this.$refs.scroll.finishPullUp();
       }
     }
