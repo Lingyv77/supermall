@@ -54,6 +54,9 @@
     methods: {
       scrollTo(x, y, time = 500) {
         this.bscroll.scrollTo(x, y, time)
+      },
+      finishPullUp() {
+        this.bscroll.finishPullUp();
       }
     }
   }

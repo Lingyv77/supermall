@@ -67,7 +67,9 @@
       this.getHomeMultidata();
 
       //2.请求商品数据
-      this.getHomeGoods();
+      this.getHomeGoods('pop');
+      this.getHomeGoods('news');
+      this.getHomeGoods('sell');
     },
     methods: {
       /**
@@ -97,7 +99,8 @@
         }
       },
       loadMore() {
-        console.log('上拉加载更多')
+        console.log('上拉加载更多');
+        this.getHomeGoods(this.currentType);
       },
 
       /**
@@ -109,10 +112,12 @@
           this.recommend = res.data.recommend.list;
         })
       },
-      getHomeGoods() {
-        this.$axios.get('/pop').then(res => {this.goods.pop.list = res.data.result.wall.docs})
-        this.$axios.get('/news').then(res => {this.goods.news.list = res.data.result.wall.docs})
-        this.$axios.get('/sell').then(res => {this.goods.sell.list = res.data.result.wall.docs})
+      getHomeGoods(type) {
+        const page = this.goods[type].page + 1;
+        this.$axios.get(type+page).then(res => {this.goods[type].list.push(...res.data.result.wall.docs)});
+        this.goods[type].page += 1;
+
+        this.$refs.scroll.finishPullUp();
       }
     }
   }
