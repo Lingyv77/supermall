@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>dddd</h2>
+    详情页
   </div>
 </template>
 
