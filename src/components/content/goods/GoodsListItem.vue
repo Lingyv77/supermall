@@ -1,13 +1,11 @@
 <template>
-  <div class="goodsitem">
-    <a :href="goodsItem.link" class="good-a">
-      <img :src="goodsItem.img" alt="">
-      <div>
+  <div class="goodsitem" @click="itemClick">
+      <img :src="goodsItem.img" alt="" @load="imageLoad">
+      <div class="goods-title">
         <p>{{goodsItem.title}}</p>
         <span class="price">￥{{goodsItem.price}}</span>
         <span class="cfav">⚝{{goodsItem.cfav}}</span>
       </div>
-    </a>
   </div>
 </template>
 
@@ -21,19 +19,23 @@
           return {};
         }
       }
-    }
+    },
+    methods: {
+      imageLoad() {
+        this.$bus.$emit('itemImageLoad');
+      },
+      itemClick() {
+        this.$router.push('/detail');
+      }
+    },
   }
 </script>
 
 <style scoped>
-   .good-a {
-     text-decoration: none;
-     color: rgb(69, 64, 64);
-   }
-   
   .goodsitem{
-    position: relative;
-    height: 270px;
+    color: rgb(69, 64, 64);
+    height: auto;
+    min-height: 331px;
     float: left;
     margin: 3px;
     width: calc(50% - 6px);
@@ -44,12 +46,24 @@
 
   .goodsitem img {
     width: 100%;
-    height: 200px;
+    height: 80%;
+    min-height: 174px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .goods-title{
+    width: 100%;
+    height: 20%;
+    min-height: 66px;
+    position: relative;
+    padding: 4px 4px 0 4px;
+    box-sizing: border-box;
   }
 
   .goodsitem p {
     font-size: 12px;
-    transform: translateY(-10px);
+    margin: 0;
     height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -64,13 +78,13 @@
     color: rgb(32, 31, 31);
     position: absolute;
     left: 10px;
-    bottom: 3px;
+    bottom: 7px;
   }
 
   .goodsitem .cfav {
     font-size: 12px;
     position: absolute;
     right: 12px;
-    bottom: 3px;
+    bottom: 7px;
   }
 </style>

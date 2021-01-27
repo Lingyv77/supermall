@@ -50,7 +50,7 @@ export default {
   }
 
   .tab-control-item span {
-    padding: 6px;
+    padding: 3px;
   }
 
   .active span {
