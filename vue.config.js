@@ -1,5 +1,3 @@
-const {proxy} = require('./src/network/proxy');
-
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -14,8 +12,6 @@ module.exports = {
     devServer: {
       open: false,
       port: 8080, // 自定义修改8080端口
-      // 代理跨域
-      proxy
     }
   }
 }

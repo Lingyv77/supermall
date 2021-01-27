@@ -35,7 +35,7 @@
   import Scroll from 'components/common/scroll/Scroll'
   import BackTop from 'components/content/backTop/BackTop'
   
-  import {getHomeMultidata} from 'network/home'
+  import {getHomeMultidata,getHomeGoods} from 'network/home'
   import {debounce} from 'common/utils'
 
 
@@ -78,7 +78,7 @@
 
       //2.请求商品数据
       this.getHomeGoods('pop');
-      this.getHomeGoods('news');
+      this.getHomeGoods('new');
       this.getHomeGoods('sell');
     },
     mounted() {
@@ -99,7 +99,7 @@
             this.currentType = 'pop'
             break;
           case 1:
-            this.currentType = 'news'
+            this.currentType = 'new'
             break;
           case 2:
             this.currentType = 'sell'
@@ -134,11 +134,13 @@
       },
       getHomeGoods(type) {
         const page = this.goods[type].page + 1;
-        this.$axios.get(type+page).then(res => {this.goods[type].list.push(...res.data.result.wall.docs)});
-        this.goods[type].page += 1;
-        setTimeout(() => {
-          this.$refs.scroll.finishPullUp();
-        }, 500);
+        getHomeGoods(type,page).then(res => {
+          this.goods[type].list.push(...res.data.list);
+          this.goods[type].page += 1;
+          setTimeout(() => {
+            this.$refs.scroll.finishPullUp();
+          }, 500);
+        })
       },
       swiperImageLoad() {
         this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
