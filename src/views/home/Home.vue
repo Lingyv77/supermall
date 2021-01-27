@@ -153,6 +153,7 @@
     padding-top: 44px;
     height: 100vh;
     box-sizing: border-box;
+    background-color: rgb(236, 236, 236);
   }
 
   .home-nav {
