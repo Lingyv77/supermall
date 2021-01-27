@@ -47,7 +47,7 @@
         recommend: [],
         goods: {
           'pop': {page: 0, list: []},
-          'news': {page: 0, list: []},
+          'new': {page: 0, list: []},
           'sell': {page: 0, list: []}
         },
         currentType: 'pop',
@@ -133,8 +133,7 @@
         })
       },
       getHomeGoods(type) {
-        const page = this.goods[type].page + 1;
-        getHomeGoods(type,page).then(res => {
+        getHomeGoods(type,1).then(res => {
           this.goods[type].list.push(...res.data.list);
           this.goods[type].page += 1;
           setTimeout(() => {
