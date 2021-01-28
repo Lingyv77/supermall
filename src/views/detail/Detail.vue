@@ -21,8 +21,8 @@
       return {
         iid: null,
         topImages: [],
-        goods: null,
-        shop: null
+        goods: {},
+        shop: {}
       }
     },
     components: {
