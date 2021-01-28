@@ -63,9 +63,8 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      padding-right: 10px;
-      vertical-align: middle;
-      box-sizing: border-box;
+      margin-right: 10px;
+			vertical-align: middle;
     }
   
   .boundary {
@@ -119,6 +118,8 @@
 
     .enter-shop-wrap {
       text-align: center;
+      padding-left: 5px;
+      box-sizing: border-box;
     }
       .enter-shop-wrap div{
         display: inline-block;
