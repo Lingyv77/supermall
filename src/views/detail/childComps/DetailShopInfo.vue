@@ -27,13 +27,6 @@
         <div class="enter-shop-wrap">
           <div>进店逛逛</div>
         </div>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
     </div>
 </template>
 

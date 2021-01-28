@@ -53,5 +53,8 @@
 <style scoped>
   #detail {
     background-color: white;
+    position: relative;
+    z-index: 9;
+    background-color: white;
   }
 </style>
