@@ -120,7 +120,7 @@
       text-align: center;
       padding-right: 15px;
       box-sizing: border-box;
-      border-bottom: 2px solid #f2f2f2;
+      border-bottom: 5px solid #f2f2f2;
     }
       .enter-shop-wrap div{
         display: inline-block;
