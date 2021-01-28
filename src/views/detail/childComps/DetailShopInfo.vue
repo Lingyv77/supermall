@@ -69,7 +69,7 @@
   
   .boundary {
     width: 1px;
-    background-color: rgb(214, 196, 196);
+    background-color: #f2f2f2;
     border-radius: 50%;
   }
 

@@ -7,6 +7,7 @@
           <detail-Swiper :top-images="topImages"/>
           <detail-base-info :goods="goods"/>
           <detail-shop-info :shop="shop"/>
+          <detail-goods-info :detail-info="detail-info"/>
       </scroll>
   </div>
 </template>
@@ -16,6 +17,7 @@
   import DetailSwiper from './childComps/DetailSwiper'
   import DetailBaseInfo from './childComps/DetailBaseInfo'
   import DetailShopInfo from './childComps/DetailShopInfo'
+  import DetailGoodsInfo from './childComps/DetailGoodsInfo'
 
   import Scroll from 'components/common/scroll/Scroll'
 
@@ -28,7 +30,8 @@
         iid: null,
         topImages: [],
         goods: {},
-        shop: {}
+        shop: {},
+        detailInfo: {}
       }
     },
     components: {
@@ -36,7 +39,8 @@
       DetailSwiper,
       DetailBaseInfo,
       DetailShopInfo,
-      Scroll
+      Scroll,
+      DetailGoodsInfo
     },
     created() {
       //1.保存传入的iid
@@ -52,6 +56,8 @@
           this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services);
           //3.获取商家详情
           this.shop = new Shop(data.shopInfo);
+          //4.保存商品详情数据
+          this.detailInfo = data.datailInfo;
         })
     },
   }
