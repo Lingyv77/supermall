@@ -1,9 +1,11 @@
 <template>
   <div id="detail">
-    <detail-nav-bar/>
-    <detail-Swiper :top-images="topImages"/>
-    <detail-base-info :goods="goods"/>
-    <detail-shop-info :shop="shop"/>
+      <detail-nav-bar/>
+      <scroll class="content">
+          <detail-Swiper :top-images="topImages"/>
+          <detail-base-info :goods="goods"/>
+          <detail-shop-info :shop="shop"/>
+      </scroll>
   </div>
 </template>
 
@@ -12,6 +14,8 @@
   import DetailSwiper from './childComps/DetailSwiper'
   import DetailBaseInfo from './childComps/DetailBaseInfo'
   import DetailShopInfo from './childComps/DetailShopInfo'
+
+  import Scroll from 'components/common/scroll/Scroll'
 
   import {getDetail, Goods, Shop} from 'network/detail'
   
@@ -29,7 +33,8 @@
       DetailNavBar,
       DetailSwiper,
       DetailBaseInfo,
-      DetailShopInfo
+      DetailShopInfo,
+      Scroll
     },
     created() {
       //1.保存传入的iid
@@ -56,5 +61,10 @@
     position: relative;
     z-index: 9;
     background-color: white;
+    height: 100vh;
+  }
+
+  .content {
+    height: calc(100%-44px);
   }
 </style>
