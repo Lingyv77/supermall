@@ -57,9 +57,6 @@
           //3.获取商家详情
           this.shop = new Shop(data.shopInfo);
           //4.保存商品详情数据
-          this.detailInfo = data.detailInfo;
-          console.log(data.detailInfo);
-          console.log('111');
         })
     },
   }
