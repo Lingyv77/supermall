@@ -59,7 +59,6 @@
       },
       refresh() {
         this.bscroll.refresh(); //重新刷新BScroll
-        console.log('----');
       },
       finishPullUp() {
         this.bscroll && this.bscroll.finishPullUp();
