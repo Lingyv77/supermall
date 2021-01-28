@@ -118,7 +118,7 @@
 
     .enter-shop-wrap {
       text-align: center;
-      padding-left: 5px;
+      padding-right: 15px;
       box-sizing: border-box;
     }
       .enter-shop-wrap div{
