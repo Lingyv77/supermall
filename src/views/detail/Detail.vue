@@ -7,7 +7,7 @@
           <detail-Swiper :top-images="topImages"/>
           <detail-base-info :goods="goods"/>
           <detail-shop-info :shop="shop"/>
-          <detail-goods-info :detail-info="detailInfo"/>
+          <detail-goods-info :detail-info="detailInfo" @img-load="goodsImgLoad"/>
       </scroll>
   </div>
 </template>
@@ -31,8 +31,7 @@
         topImages: [],
         goods: {},
         shop: {},
-        detailInfo: {},
-        scroll: null
+        detailInfo: {}
       }
     },
     components: {
@@ -60,11 +59,12 @@
           //4.保存商品详情数据
           this.detailInfo = data.detailInfo;
         })
-    },mounted() {
-       this.scroll = this.$refs.scroll;
-       setTimeout(() =>{
-        this.scroll.refresh()
-        },200)
+    },
+    methods: {
+      goodsImgLoad() {
+        this.$refs.scroll.refresh()
+        
+      }
     },
   }
 </script>
