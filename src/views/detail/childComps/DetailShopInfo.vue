@@ -63,8 +63,9 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      margin-right: 10px;
-			vertical-align: middle;
+      padding-right: 10px;
+      vertical-align: middle;
+      box-sizing: border-box;
     }
   
   .boundary {

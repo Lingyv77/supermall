@@ -1,6 +1,6 @@
 <template>
   <div id="detail">
-      <detail-nav-bar/>
+      <detail-nav-bar class="detail-nav"/>
       <scroll class="content">
           <detail-Swiper :top-images="topImages"/>
           <detail-base-info :goods="goods"/>
@@ -64,7 +64,14 @@
     height: 100vh;
   }
 
+  .detail-nav {
+    position: relative;
+    z-index: 9;
+    background-color: white;
+  }
+
   .content {
-    height: calc(100%-44px);
+    height: calc(100% - 49px);
+    overflow: hidden;
   }
 </style>
