@@ -1,7 +1,7 @@
 <template>
-    <div class="detail-goods-info" v-if="Object.keys(detailInfo)">
+    <div class="detail-goods-info" v-if="Object.keys(detailInfo).length">
         <div class="info-text-wrap">
-            
+            <div class="info-text-desc">{{detailInfo.desc}}</div>
         </div>
     </div>
 </template>
