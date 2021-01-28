@@ -22,3 +22,14 @@ export class Goods {
     this.services = services;
   }
 }
+
+//商铺信息
+export class Shop {
+  constructor(shopInfo) {
+    this.shopLogo = shopInfo.shopLogo;
+    this.name = shopInfo.name;
+    this.score = shopInfo.score;
+    this.cSells = shopInfo.cSells;
+    this.cGoods = shopInfo.cGoods;
+  }
+}
