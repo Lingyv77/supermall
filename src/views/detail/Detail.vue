@@ -64,12 +64,12 @@
           this.detailInfo = data.detailInfo;
           //5.获取参数信息
           this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
-          console.log(paramInfo);
+          console.log(this.paramInfo);
         })
     },
     methods: {
       goodsImgLoad() {
-        this.$refs.scroll.refresh()
+        this.$refs.scroll.refresh();
         
       }
     },

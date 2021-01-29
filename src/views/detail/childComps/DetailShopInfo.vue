@@ -1,5 +1,5 @@
 <template>
-    <div class="detail-shop-info" v-if="Object.keys(shop)">
+    <div class="detail-shop-info" v-if="Object.keys(shop).length">
         <div class="flex shop-name-info">
             <img :src="shop.shopLogo" alt="">
             <div>{{shop.name}}</div>
