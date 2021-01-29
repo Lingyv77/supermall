@@ -25,9 +25,14 @@
         }
       }
     },
+    data() {
+      return {
+        en: false
+      }
+    },
     methods: {
       imgLoad() {
-        this.$emit('imgLoad')
+          this.$emit('imgLoad');
       }
     },
   }

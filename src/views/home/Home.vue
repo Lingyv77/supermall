@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import HomeSwiper from './childComps/HomeWiper'
+  import HomeSwiper from './childComps/HomeSwiper'
   import RecommendView from './childComps/RecommendView'
   import FeatureView from './childComps/FeatureView'
 
@@ -118,8 +118,7 @@
         //2.决定tabControl是否吸顶(position: fixed)
         this.isTabFixed = (-position.y) >= this.tabOffsetTop;
       },
-      loadMore() {
-        console.log('上拉加载更多');
+      loadMore() { //下拉
         this.getHomeGoods(this.currentType);
       },
 

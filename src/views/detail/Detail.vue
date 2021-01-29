@@ -7,7 +7,7 @@
           <detail-Swiper :top-images="topImages"/>
           <detail-base-info :goods="goods"/>
           <detail-shop-info :shop="shop"/>
-          <detail-goods-info :detail-info="detailInfo" @img-load="goodsImgLoad"/>
+          <detail-goods-info :detail-info="detailInfo" @imgLoad="goodsImgLoad"/>
       </scroll>
   </div>
 </template>
