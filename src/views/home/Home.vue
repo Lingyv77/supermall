@@ -36,7 +36,7 @@
   import BackTop from 'components/content/backTop/BackTop'
   
   import {getHomeMultidata,getHomeGoods} from 'network/home'
-  import {debounce, Date} from 'common/utils'
+  import {debounce, formatDate} from 'common/utils'
 
 
   export default {
@@ -74,7 +74,7 @@
     ,
     created() {
       var d = new Date();
-      console.log(d.formatDate('yyyy-M-d/hh:mm:ss'));
+      console.log(formatDate(d,'yyyy-M-d/hh:mm:ss'));
       //1.请求多个数据
       this.getHomeMultidata();
 

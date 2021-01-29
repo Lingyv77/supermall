@@ -8,18 +8,13 @@ export function debounce(func, delay) {
   }
 }
 
-Date.prototype.formatDate = function (fmt) {
-  if(this == null)
-    new TypeError('this is not defined or is null!');
-
-  var o = Object(this);
-
+export function formatDate (date, fmt) {
   function padLeftzero(str) {
     return ('00' + str).substring(str.length);
   }
 
   if (/(y+)/.test(fmt))
-    var result = fmt.replace(RegExp.$1, o.getFullYear()).substring(4 - RegExp.$1.length);
+    var result = fmt.replace(RegExp.$1, date.getFullYear()).substring(4 - RegExp.$1.length);
 
   let dateAttrs = {
     'M+': o.getMonth() + 1,
@@ -38,7 +33,3 @@ Date.prototype.formatDate = function (fmt) {
 
   return result;
 }
-
-const d = new Date().constructor
-
-export const Date = d;
