@@ -48,7 +48,7 @@
     },
     created() {
       //1.保存传入的iid
-      this.iid = this.$route.params.iid;
+      this.iid = this.$route.query.iid;
 
       //2.根据iid请求详情数据
         getDetail(this.iid).then(res => {
@@ -64,7 +64,6 @@
           this.detailInfo = data.detailInfo;
           //5.获取参数信息
           this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
-          console.log(this.paramInfo);
         })
     },
     methods: {
