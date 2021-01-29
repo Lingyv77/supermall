@@ -33,3 +33,11 @@ export class Shop {
     this.cGoods = shopInfo.cGoods;
   }
 }
+
+//参数信息
+export class Param {
+  constructor(info, rule) {
+    this.info = info.set;
+    this.rule = rule.tables;
+  }
+}

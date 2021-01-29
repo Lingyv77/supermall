@@ -8,6 +8,7 @@
           <detail-base-info :goods="goods"/>
           <detail-shop-info :shop="shop"/>
           <detail-goods-info :detail-info="detailInfo" @imgLoad="goodsImgLoad"/>
+          <detail-param-info :param-info="paramInfo"/>
       </scroll>
   </div>
 </template>
@@ -18,10 +19,11 @@
   import DetailBaseInfo from './childComps/DetailBaseInfo'
   import DetailShopInfo from './childComps/DetailShopInfo'
   import DetailGoodsInfo from './childComps/DetailGoodsInfo'
+  import DetailParamInfo from './childComps/DetailParamInfo.vue'
 
   import Scroll from 'components/common/scroll/Scroll'
 
-  import {getDetail, Goods, Shop} from 'network/detail'
+  import {getDetail, Goods, Shop, Param} from 'network/detail'
   
   export default {
     name: "Detail",
@@ -31,7 +33,8 @@
         topImages: [],
         goods: {},
         shop: {},
-        detailInfo: {}
+        detailInfo: {},
+        paramInfo: {},
       }
     },
     components: {
@@ -40,7 +43,8 @@
       DetailBaseInfo,
       DetailShopInfo,
       Scroll,
-      DetailGoodsInfo
+      DetailGoodsInfo,
+      DetailParamInfo
     },
     created() {
       //1.保存传入的iid
@@ -56,8 +60,11 @@
           this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services);
           //3.获取商家详情
           this.shop = new Shop(data.shopInfo);
-          //4.保存商品详情数据
+          //4.商品图片详情数据
           this.detailInfo = data.detailInfo;
+          //5.获取参数信息
+          this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
+          console.log(paramInfo);
         })
     },
     methods: {
