@@ -32,6 +32,7 @@
   .param-wrap {
     border-top:  4px solid #ececec;
     border-bottom: 4px solid #ececec;
+    padding-bottom: 20px;
   }
     .boundary {
       height: 3px;

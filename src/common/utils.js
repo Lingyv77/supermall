@@ -17,11 +17,11 @@ export function formatDate (date, fmt) {
     var result = fmt.replace(RegExp.$1, date.getFullYear()).substring(4 - RegExp.$1.length);
 
   let dateAttrs = {
-    'M+': o.getMonth() + 1,
-    'd+': o.getDate(),
-    'h+': o.getHours(),
-    'm+': o.getMinutes(),
-    's+': o.getSeconds(),
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds(),
   }
 
   for (let key in dateAttrs) {

@@ -9,6 +9,7 @@
           <detail-shop-info :shop="shop"/>
           <detail-goods-info :detail-info="detailInfo" @imgLoad="goodsImgLoad"/>
           <detail-param-info :param-info="paramInfo"/>
+          <detail-comment-info :comment-info="commentsInfo"/>
       </scroll>
   </div>
 </template>
@@ -19,7 +20,8 @@
   import DetailBaseInfo from './childComps/DetailBaseInfo'
   import DetailShopInfo from './childComps/DetailShopInfo'
   import DetailGoodsInfo from './childComps/DetailGoodsInfo'
-  import DetailParamInfo from './childComps/DetailParamInfo.vue'
+  import DetailParamInfo from './childComps/DetailParamInfo'
+  import DetailCommentInfo from './childComps/DetailCommentInfo'
 
   import Scroll from 'components/common/scroll/Scroll'
 
@@ -35,6 +37,7 @@
         shop: {},
         detailInfo: {},
         paramInfo: {},
+        commentsInfo: {},
       }
     },
     components: {
@@ -44,7 +47,8 @@
       DetailShopInfo,
       Scroll,
       DetailGoodsInfo,
-      DetailParamInfo
+      DetailParamInfo,
+      DetailCommentInfo
     },
     created() {
       //1.保存传入的iid
@@ -64,6 +68,8 @@
           this.detailInfo = data.detailInfo;
           //5.获取参数信息
           this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
+          //6.取出评论的信息
+          this.commentsInfo = data.rate.list[0];
         })
     },
     methods: {
