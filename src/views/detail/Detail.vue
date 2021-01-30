@@ -1,15 +1,17 @@
 <template>
   <div id="detail">
-      <detail-nav-bar class="detail-nav"/>
+      <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
           <scroll class="content" ref="scroll" 
                   :probeType="3" 
-                  :pullUpLoad="true">
+                  :pullUpLoad="true"
+                  @scroll="contentScroll">
           <detail-Swiper :top-images="topImages"/>
           <detail-base-info :goods="goods"/>
           <detail-shop-info :shop="shop"/>
           <detail-goods-info :detail-info="detailInfo" @imgLoad="goodsImgLoad"/>
-          <detail-param-info :param-info="paramInfo"/>
-          <detail-comment-info :comment-info="commentsInfo"/>
+          <detail-param-info ref="param" :param-info="paramInfo"/>
+          <detail-comment-info ref="comment" :comment-info="commentsInfo"/>
+          <goods-list ref="recommend" :goods="recommend" class="recommend-goods"/>
       </scroll>
   </div>
 </template>
@@ -22,10 +24,13 @@
   import DetailGoodsInfo from './childComps/DetailGoodsInfo'
   import DetailParamInfo from './childComps/DetailParamInfo'
   import DetailCommentInfo from './childComps/DetailCommentInfo'
+  import GoodsList from 'components/content/goods/GoodsList'
 
   import Scroll from 'components/common/scroll/Scroll'
 
-  import {getDetail, Goods, Shop, Param} from 'network/detail'
+  import {getDetail, Goods, Shop, Param, getRecommend} from 'network/detail'
+  import {debounce} from 'common/utils'
+  import {imageLoadWatchMixin} from 'common/mixin'
   
   export default {
     name: "Detail",
@@ -38,8 +43,14 @@
         detailInfo: {},
         paramInfo: {},
         commentsInfo: {},
+        recommend: [],
+        detailWatch: null,
+        themeTopYs: [],
+        getThemeTopY: null,
+        currentIndex: 0
       }
     },
+    mixins: [imageLoadWatchMixin],
     components: {
       DetailNavBar,
       DetailSwiper,
@@ -48,7 +59,8 @@
       Scroll,
       DetailGoodsInfo,
       DetailParamInfo,
-      DetailCommentInfo
+      DetailCommentInfo,
+      GoodsList
     },
     created() {
       //1.保存传入的iid
@@ -70,13 +82,61 @@
           this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
           //6.取出评论的信息
           this.commentsInfo = data.rate.list[0];
+          //7.请求推荐数据
+          getRecommend().then(res => {
+            this.recommend = res.data.list;
+          })
         })
+
+          // //第一次值不对: this.$refs.params.$el 组件压根没被渲染
+          // this.themeTopYs = [];
+          // this.themeTopYs.push(0);
+          // this.themeTopYs.push(-this.$refs.param.$el.offsetTop);
+          // this.themeTopYs.push(-this.$refs.comment.$el.offsetTop);
+          // this.themeTopYs.push(-this.$refs.recommend.$el.offsetTop);
+
+        // this.$nextTick(() => { //this.$nextTick(() => { //dom渲染完后执行})
+        //   this.themeTopYs = [];
+        //   //第二次值不对: 图片没有计算在类
+        //   //根据最新的数据, 对应的DOM时一斤被渲染出来
+        //   //但是图片依然是没有加载完(目前获取offsetTop不包含其他中的图片)
+        //   this.themeTopYs.push(0);
+        //   this.themeTopYs.push(-this.$refs.param.$el.offsetTop);
+        //   this.themeTopYs.push(-this.$refs.comment.$el.offsetTop);
+        //   this.themeTopYs.push(-this.$refs.recommend.$el.offsetTop);
+        // })
+        this.getThemeTopY = debounce(() => {
+          this.themeTopYs = [];
+          this.themeTopYs.push(0);
+          this.themeTopYs.push(this.$refs.param.$el.offsetTop);
+          this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+          this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+        },200)
     },
     methods: {
       goodsImgLoad() {
         this.$refs.scroll.refresh();
-        
+        this.$nextTick(() => { //this.$nextTick(() => { //dom渲染完后执行})
+          this.getThemeTopY()
+        })
+      },
+      titleClick(index) {
+        this.$refs.scroll.scrollTo(0, -this.themeTopYs[index],500);
+      },
+      contentScroll(position) {
+        const positionY = -position.y
+        for (let i in this.themeTopYs) {
+          if(this.currentIndex !== i && (positionY >= this.themeTopYs[i] && positionY < this.themeTopYs[Number(i)+1] || 
+          positionY >= this.themeTopYs[i] && Number(i) === this.themeTopYs.length -1 )) {
+            this.currentIndex = i;
+            this.$refs.nav.currentIndex = Number(i);
+          }
+        }
       }
+    },
+    destroyed() {
+      //4.取消事件监听  this.$bus.$off('事件',函数)
+      this.$bus.$off('itemImageLoad', this.imageLoadWatch);
     },
   }
 </script>
@@ -100,5 +160,9 @@
   .content {
     height: calc(100% - 49px);
     position: relative;
+  }
+
+  .recommend-goods {
+    padding: 0 8px;
   }
 </style>

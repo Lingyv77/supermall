@@ -4,8 +4,7 @@
           <tab-control class="tab-control" v-show="isTabFixed"
                        :titles="['流行','新款','精选']" 
                        @tabClick="tabClick" 
-                       ref="tabControl1"
-                       :class="{fixed: isTabFixed}"/>
+                       ref="tabControl1"/>
           <scroll class="content" ref="scroll" 
                   :probeType="3" 
                   :pullUpLoad="true"
@@ -36,7 +35,7 @@
   import BackTop from 'components/content/backTop/BackTop'
   
   import {getHomeMultidata,getHomeGoods} from 'network/home'
-  import {debounce} from 'common/utils'
+  import {imageLoadWatchMixin} from 'common/mixin'
 
 
   export default {
@@ -52,10 +51,12 @@
         },
         currentType: 'pop',
         isShowBackTop: false,
-        tabOffsetTop: 0,
-        isTabFixed: false
+        tabOffsetTop: Infinity,
+        isTabFixed: false,
+        imageLoadWatch: null
       }
     },
+    mixins: [imageLoadWatchMixin], //mixins (混入写法)
     components: {
       NavBar,
       HomeSwiper,
@@ -81,13 +82,9 @@
       this.getHomeGoods('new');
       this.getHomeGoods('sell');
     },
-    mounted() {
-      const refresh = debounce(this.$refs.scroll.refresh, 200); 
-
-      //3.监听item中图片加载完成
-      this.$bus.$on('itemImageLoad', () => {
-        refresh();
-      })
+    deactivated() {
+      //4.取消事件监听  this.$bus.$off('事件',函数)
+      this.$bus.$off('itemImageLoad', this.imageLoadWatch);
     },
     methods: {
       /**
@@ -132,7 +129,8 @@
         })
       },
       getHomeGoods(type) {
-        getHomeGoods(type,1).then(res => {
+        const page = this.goods[type].page + 1;
+        getHomeGoods(type,page).then(res => {
           this.goods[type].list.push(...res.data.list);
           this.goods[type].page += 1;
           setTimeout(() => {

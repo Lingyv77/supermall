@@ -35,8 +35,8 @@
     },
     filters: {
       showDate(value) {
-        const date = new Date(value);
-        return formatDate(date,'yyyy-MM-dd')
+        const date = new Date(value * 1000);
+        return formatDate(date,'yyyy-MM-dd');
       } 
     }
   }
