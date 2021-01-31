@@ -32,11 +32,9 @@
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodsList from 'components/content/goods/GoodsList'
   import Scroll from 'components/common/scroll/Scroll'
-  import BackTop from 'components/content/backTop/BackTop'
   
   import {getHomeMultidata,getHomeGoods} from 'network/home'
-  import {imageLoadWatchMixin} from 'common/mixin'
-  import {BACK_POSITION} from 'common/const';
+  import {imageLoadWatchMixin, backTopMixin} from 'common/mixin'
 
 
   export default {
@@ -51,13 +49,12 @@
           'sell': {page: 0, list: []}
         },
         currentType: 'pop',
-        isShowBackTop: false,
         tabOffsetTop: Infinity,
         isTabFixed: false,
         imageLoadWatch: null
       }
     },
-    mixins: [imageLoadWatchMixin], //mixins (混入写法)
+    mixins: [imageLoadWatchMixin, backTopMixin], //mixins (混入写法)
     components: {
       NavBar,
       HomeSwiper,
@@ -66,7 +63,6 @@
       TabControl,
       GoodsList,
       Scroll,
-      BackTop
     },
     computed: {
       showGoods() {
@@ -111,7 +107,7 @@
       },
       contentScroll(position) {
         //1.判断BackTop是否显示
-        this.isShowBackTop = (-position.y) >= BACK_POSITION;
+        this.listenShowBackTop(-position.y);
 
         //2.决定tabControl是否吸顶(position: fixed)
         this.isTabFixed = (-position.y) >= this.tabOffsetTop;

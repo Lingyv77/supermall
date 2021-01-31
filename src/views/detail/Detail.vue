@@ -13,8 +13,8 @@
           <detail-comment-info ref="comment" :comment-info="commentsInfo"/>
           <goods-list ref="recommend" :goods="recommend" class="recommend-goods"/>
       </scroll>
-      <detail-bottom-bar/>
-      <back-top @click.native="backTop" v-show="isshowBackTop"/>
+      <detail-bottom-bar @addToCart="addToCart"/>
+      <back-top @click.native="backTop" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -137,9 +137,20 @@
             this.$refs.nav.currentIndex = Number(i);
           }
         }
-
         //2.是否回到顶部
         this.listenShowBackTop(positionY);
+      },
+      addToCart() {
+        //1.获取购物车需要展示的信息
+        const product = {}
+        product.image = this.topImages[0];
+        product.title = this.goods.title;
+        product.desc = this.goods.desc;
+        product.price = this.goods.lowNowPrice;
+        product.iid = this.iid;
+        
+        //2.将商品添加到购物车里
+
       }
     },
     destroyed() {

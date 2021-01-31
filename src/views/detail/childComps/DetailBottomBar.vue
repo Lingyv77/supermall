@@ -12,7 +12,7 @@
       <img src='~assets/img/detail/bottom-bar3.png' alt="">
       <p>收藏</p>
     </div>
-    <div class="btn cart-btn">加入购物车</div>
+    <div class="btn cart-btn" @click="cartBtnClick">加入购物车</div>
     <div class="btn buy-btn">购买</div>
   </div>
 </template>
@@ -20,6 +20,16 @@
 <script>
   export default {
     name: 'DetailBottomBar',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      cartBtnClick() {
+        this.$emit('addToCart');
+      }
+    },
   }
 </script>
 

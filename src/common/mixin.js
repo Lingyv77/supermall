@@ -17,7 +17,7 @@ export const imageLoadWatchMixin = {
 export const backTopMixin = {
   data() {
     return {
-      isshowBackTop: false
+      isShowBackTop: false
     }
   },
   components: {
@@ -27,8 +27,8 @@ export const backTopMixin = {
     backTop() {
       this.$refs.scroll.scrollTo(0, 0, 300)
     },
-    listenShowBackTop(position) {
-      this.isshowBackTop = positionY >= BACK_POSITION;
+    listenShowBackTop(positionY) {
+      this.isShowBackTop = positionY >= BACK_POSITION;
     }
   },
 }
