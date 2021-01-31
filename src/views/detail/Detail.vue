@@ -85,7 +85,7 @@
           //5.获取参数信息
           this.paramInfo = new Param(data.itemParams.info, data.itemParams.rule);
           //6.取出评论的信息
-          this.commentsInfo = data.rate.list[0];
+          this.commentsInfo = data.rate.list && data.rate.list[0];
           //7.请求推荐数据
           getRecommend().then(res => {
             this.recommend = res.data.list;
@@ -112,9 +112,9 @@
         this.getThemeTopY = debounce(() => {
           this.themeTopYs = [];
           this.themeTopYs.push(0);
-          this.themeTopYs.push(this.$refs.param.$el.offsetTop);
-          this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
-          this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+          this.$refs.param && this.themeTopYs.push(this.$refs.param.$el.offsetTop);
+          this.$refs.comment && this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+          this.$refs.recommend && this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
         },200)
     },
     methods: {
@@ -151,7 +151,8 @@
         
         //2.将商品添加到购物车里
         // this.$store.state.cartList.push(product); //这方法不好通过mutations:{} 更改$store数据次啊会被监听
-        this.$store.commit('addCart',product);
+        // this.$store.commit('addCart',product); //最好用actions
+        this.$store.dispatch('addCart',product);
       }
     },
     destroyed() {

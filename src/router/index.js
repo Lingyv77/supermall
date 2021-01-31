@@ -7,6 +7,20 @@ const Category = () => import('../views/category/Category');
 const Profile = () => import('../views/profile/Profile');
 const Detail = () => import('../views/detail/Detail')
 
+// 解决报错
+const originalPush = Router.prototype.push
+const originalReplace = Router.prototype.replace
+// push
+Router.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+// replace
+Router.prototype.replace = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
+  return originalReplace.call(this, location).catch(err => err)
+}
+
 //安装插件
 Vue.use(Router);
 

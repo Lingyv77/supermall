@@ -66,6 +66,11 @@
     }
     .cart-btn {
       background-color: yellow;
+      transition: 200ms all;
+    }
+    .cart-btn:active {
+      background-color: rgb(45, 84, 25);
+      color:rgb(255, 255, 255);
     }
     .buy-btn {
       background-color: rgb(137, 52, 52);
