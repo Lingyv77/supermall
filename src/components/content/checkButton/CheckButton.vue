@@ -32,8 +32,10 @@
       height: 21px;
       border-radius: 50%;
       box-shadow: 0 0 1px 2px rgb(91, 148, 91);
+      position: relative;
     }
     .cheack-bottom img {
+      position: absolute;
        width: 20px;
        height: 20px;
      }

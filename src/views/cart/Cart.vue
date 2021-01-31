@@ -4,12 +4,14 @@
       <div slot="center">购物车({{length}})</div>
     </nav-bar>
     <cart-list/>
+    <cart-bottom-bar/>
   </div>
 </template>
 
 <script>
   import NavBar from 'components/common/navbar/NavBar'
   import CartList from './childComps/CartList'
+  import CartBottomBar from './childComps/CartBottomBar'
   
   import {mapGetters} from 'vuex' //vux方法getters 与 computed 解构
   
@@ -17,7 +19,8 @@
     name: 'Cart',
     components: { 
       NavBar,
-      CartList
+      CartList,
+      CartBottomBar
     },
     computed: {
       //第一种写法 默认变量为value com
@@ -35,6 +38,7 @@
   #cart {
     height: 100vh;
     position: relative;
+    background-color: white;
   }
   .cart-nav {
     background-color: rgb(91, 148, 91);

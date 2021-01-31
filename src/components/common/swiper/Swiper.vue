@@ -95,11 +95,10 @@
           this.swiperStyle.transition = '0ms';
           if (this.currentIndex >= this.slideCount + 1) {
             this.currentIndex = 1;
-            this.setTransform(-this.currentIndex * this.totalWidth);
           } else if (this.currentIndex <= 0) {
             this.currentIndex = this.slideCount;
-            this.setTransform(-this.currentIndex * this.totalWidth);
           }
+          this.setTransform(-this.currentIndex * this.totalWidth);
           // 2.结束移动后的回调
           this.$emit('transitionEnd', this.currentIndex - 1);
         },this.animDuration)

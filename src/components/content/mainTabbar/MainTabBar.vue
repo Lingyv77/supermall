@@ -1,5 +1,5 @@
 <template>
-    <tab-bar>
+    <tab-bar class="tab-bar">
       <tab-bar-item path='/home' activeColor='red'>
         <img slot="item-icon" src="~assets/img/tabbar/ico3_hover.png" alt="">
         <img slot="item-icon-active" src="~assets/img/tabbar/ico3.png" alt="">
@@ -36,5 +36,8 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
 
 

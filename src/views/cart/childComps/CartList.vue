@@ -5,7 +5,6 @@
             :pullUpLoad="true">
         <cart-list-item :productInfo="cartList"/>
     </scroll>
- 
   </div>
 </template>
 
@@ -33,8 +32,9 @@
 
 <style scoped>
   .cart-list {
-    height: calc(100% - 49px - 44px -40px);
+    height: calc(100% - 49px - 44px - 40px);
     overflow: hidden;
+    background-color: white;
   }
   .content {
     height: 100%;

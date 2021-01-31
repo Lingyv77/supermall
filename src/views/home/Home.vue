@@ -130,9 +130,8 @@
         getHomeGoods(type,page).then(res => {
           this.goods[type].list.push(...res.data.list);
           this.goods[type].page += 1;
-          setTimeout(() => {
-            this.$refs.scroll.finishPullUp();
-          }, 500);
+          
+          this.$refs.scroll.finishPullUp();
         })
       },
       swiperImageLoad() {
@@ -171,5 +170,6 @@
   .tab-control {
     position: relative;
     z-index: 9;
+    margin-top: -2px;
   }
 </style>

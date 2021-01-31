@@ -34,6 +34,7 @@
   import {getDetail, Goods, Shop, Param, getRecommend} from 'network/detail'
   import {debounce} from 'common/utils'
   import {imageLoadWatchMixin, backTopMixin} from 'common/mixin'
+  import {mapActions} from 'vuex'
   
   export default {
     name: "Detail",
@@ -118,6 +119,8 @@
         },200)
     },
     methods: {
+      ...mapActions(['addCart']), //映射actions 同mapGetters
+      
       goodsImgLoad() {
         this.$refs.scroll.refresh();
         this.$nextTick(() => { //this.$nextTick(() => { //dom渲染完后执行})
@@ -152,7 +155,8 @@
         //2.将商品添加到购物车里
         // this.$store.state.cartList.push(product); //这方法不好通过mutations:{} 更改$store数据次啊会被监听
         // this.$store.commit('addCart',product); //最好用actions
-        this.$store.dispatch('addCart',product);
+        // this.$store.dispatch('addCart',product).then(console.log) //使用mapActions下映射过来的方法
+        this.addCart(product).then(console.log); 
       }
     },
     destroyed() {
@@ -166,7 +170,7 @@
   #detail {
     background-color: white;
     position: relative;
-    z-index: 9;
+    z-index: 11;
     background-color: white;
     height: 100vh;
     overflow: hidden;

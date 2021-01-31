@@ -2,7 +2,7 @@
     <div class="cart-goods">
         <div class="cart-product flex" v-for="(item, index) in productInfo" :key="item.iid">
             <div class="cart-list-left flex">
-                <check-button :isChecked="item.checked" @click.native="checkClick(index)"/>
+                <check-button :is-checked="item.checked" @click.native="checkClick(index)"/>
                 <img :src="item.image" class="good-img" alt="商品图片">
             </div>
             <div class="cart-list-right flex">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import CheckButton from 'components/content/checkButtom/CheckButtom';
+  import CheckButton from 'components/content/checkButton/CheckButton';
 
   export default {
   components: { CheckButton },
