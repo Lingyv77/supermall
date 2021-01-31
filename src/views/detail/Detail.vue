@@ -150,7 +150,8 @@
         product.iid = this.iid;
         
         //2.将商品添加到购物车里
-
+        // this.$store.state.cartList.push(product); //这方法不好通过mutations:{} 更改$store数据次啊会被监听
+        this.$store.commit('addCart',product);
       }
     },
     destroyed() {
