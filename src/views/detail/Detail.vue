@@ -28,14 +28,12 @@
   import DetailCommentInfo from './childComps/DetailCommentInfo'
   import GoodsList from 'components/content/goods/GoodsList'
   import DetailBottomBar from './childComps/DetailBottomBar'
-  import BackTop from 'components/content/backTop/BackTop'
 
   import Scroll from 'components/common/scroll/Scroll'
 
   import {getDetail, Goods, Shop, Param, getRecommend} from 'network/detail'
   import {debounce} from 'common/utils'
-  import {imageLoadWatchMixin} from 'common/mixin'
-  import {BACK_POSITION} from 'common/const';
+  import {imageLoadWatchMixin, backTopMixin} from 'common/mixin'
   
   export default {
     name: "Detail",
@@ -52,11 +50,10 @@
         detailWatch: null,
         themeTopYs: [],
         getThemeTopY: null,
-        currentIndex: 0,
-        isshowBackTop: false
+        currentIndex: 0
       }
     },
-    mixins: [imageLoadWatchMixin],
+    mixins: [imageLoadWatchMixin, backTopMixin],
     components: {
       DetailNavBar,
       DetailSwiper,
@@ -67,8 +64,7 @@
       DetailParamInfo,
       DetailCommentInfo,
       GoodsList,
-      DetailBottomBar,
-      BackTop
+      DetailBottomBar
     },
     created() {
       //1.保存传入的iid
@@ -143,10 +139,7 @@
         }
 
         //2.是否回到顶部
-        this.isshowBackTop = positionY >= BACK_POSITION;
-      },
-      backTop() {
-        this.$refs.scroll.scrollTo(0,0, 300)
+        this.listenShowBackTop(positionY);
       }
     },
     destroyed() {

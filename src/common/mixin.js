@@ -1,4 +1,6 @@
 import { debounce } from './utils'
+import BackTop from 'components/content/backTop/BackTop'
+import { BACK_POSITION } from 'common/const';
 
 export const imageLoadWatchMixin = {
   mounted() {
@@ -10,4 +12,23 @@ export const imageLoadWatchMixin = {
     //3.监听item中图片加载完成
     this.$bus.$on('itemImageLoad', this.imageLoadWatch);
   }
+}
+
+export const backTopMixin = {
+  data() {
+    return {
+      isshowBackTop: false
+    }
+  },
+  components: {
+    BackTop
+  },
+  methods: {
+    backTop() {
+      this.$refs.scroll.scrollTo(0, 0, 300)
+    },
+    listenShowBackTop(position) {
+      this.isshowBackTop = positionY >= BACK_POSITION;
+    }
+  },
 }
