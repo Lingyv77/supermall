@@ -13,6 +13,8 @@
           <detail-comment-info ref="comment" :comment-info="commentsInfo"/>
           <goods-list ref="recommend" :goods="recommend" class="recommend-goods"/>
       </scroll>
+      <detail-bottom-bar/>
+      <back-top @click.native="backTop" v-show="isshowBackTop"/>
   </div>
 </template>
 
@@ -25,12 +27,15 @@
   import DetailParamInfo from './childComps/DetailParamInfo'
   import DetailCommentInfo from './childComps/DetailCommentInfo'
   import GoodsList from 'components/content/goods/GoodsList'
+  import DetailBottomBar from './childComps/DetailBottomBar'
+  import BackTop from 'components/content/backTop/BackTop'
 
   import Scroll from 'components/common/scroll/Scroll'
 
   import {getDetail, Goods, Shop, Param, getRecommend} from 'network/detail'
   import {debounce} from 'common/utils'
   import {imageLoadWatchMixin} from 'common/mixin'
+  import {BACK_POSITION} from 'common/const';
   
   export default {
     name: "Detail",
@@ -47,7 +52,8 @@
         detailWatch: null,
         themeTopYs: [],
         getThemeTopY: null,
-        currentIndex: 0
+        currentIndex: 0,
+        isshowBackTop: false
       }
     },
     mixins: [imageLoadWatchMixin],
@@ -60,7 +66,9 @@
       DetailGoodsInfo,
       DetailParamInfo,
       DetailCommentInfo,
-      GoodsList
+      GoodsList,
+      DetailBottomBar,
+      BackTop
     },
     created() {
       //1.保存传入的iid
@@ -124,6 +132,7 @@
         this.$refs.scroll.scrollTo(0, -this.themeTopYs[index],500);
       },
       contentScroll(position) {
+        //1.通过position 改变nav的currentIndex改变样式
         const positionY = -position.y
         for (let i in this.themeTopYs) {
           if(this.currentIndex !== i && (positionY >= this.themeTopYs[i] && positionY < this.themeTopYs[Number(i)+1] || 
@@ -132,6 +141,12 @@
             this.$refs.nav.currentIndex = Number(i);
           }
         }
+
+        //2.是否回到顶部
+        this.isshowBackTop = positionY >= BACK_POSITION;
+      },
+      backTop() {
+        this.$refs.scroll.scrollTo(0,0, 300)
       }
     },
     destroyed() {

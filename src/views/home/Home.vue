@@ -36,6 +36,7 @@
   
   import {getHomeMultidata,getHomeGoods} from 'network/home'
   import {imageLoadWatchMixin} from 'common/mixin'
+  import {BACK_POSITION} from 'common/const';
 
 
   export default {
@@ -110,7 +111,7 @@
       },
       contentScroll(position) {
         //1.判断BackTop是否显示
-        this.isShowBackTop = (-position.y) >= 1000;
+        this.isShowBackTop = (-position.y) >= BACK_POSITION;
 
         //2.决定tabControl是否吸顶(position: fixed)
         this.isTabFixed = (-position.y) >= this.tabOffsetTop;
