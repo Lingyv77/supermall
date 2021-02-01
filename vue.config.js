@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -13,5 +15,8 @@ module.exports = {
       open: false,
       port: 8080, // 自定义修改8080端口
     }
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin('所有版权归Lingyv77所有')
+  ]
 }
