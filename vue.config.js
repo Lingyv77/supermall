@@ -14,9 +14,9 @@ module.exports = {
     devServer: {
       open: false,
       port: 8080, // 自定义修改8080端口
-    }
-  },
-  plugins: [
-    new webpack.BannerPlugin('所有版权归Lingyv77所有')
-  ]
+    },
+    plugins: [
+      new webpack.BannerPlugin('所有版权归Lingyv77所有')
+    ]
+  }
 }
