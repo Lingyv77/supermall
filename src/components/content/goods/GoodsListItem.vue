@@ -1,6 +1,6 @@
 <template>
   <div class="goodsitem" @click="itemClick">
-      <img :src="itemImage" alt="" @load="imageLoad">
+      <img v-lazy="itemImage" alt="" @load="imageLoad">
       <div class="goods-title">
         <p>{{goodsItem.title}}</p>
         <span class="price">￥{{goodsItem.price}}</span>

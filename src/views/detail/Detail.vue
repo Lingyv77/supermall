@@ -14,7 +14,10 @@
           <goods-list ref="recommend" :goods="recommend" class="recommend-goods"/>
       </scroll>
       <detail-bottom-bar @addToCart="addToCart"/>
+
       <back-top @click.native="backTop" v-show="isShowBackTop"/>
+
+      <toast :message="message" :isShow="isShowToast"/>
   </div>
 </template>
 
@@ -26,10 +29,11 @@
   import DetailGoodsInfo from './childComps/DetailGoodsInfo'
   import DetailParamInfo from './childComps/DetailParamInfo'
   import DetailCommentInfo from './childComps/DetailCommentInfo'
-  import GoodsList from 'components/content/goods/GoodsList'
   import DetailBottomBar from './childComps/DetailBottomBar'
 
   import Scroll from 'components/common/scroll/Scroll'
+  import GoodsList from 'components/content/goods/GoodsList'
+  import Toast from 'components/common/toast/Toast'
 
   import {getDetail, Goods, Shop, Param, getRecommend} from 'network/detail'
   import {debounce} from 'common/utils'
@@ -51,7 +55,9 @@
         detailWatch: null,
         themeTopYs: [],
         getThemeTopY: null,
-        currentIndex: 0
+        currentIndex: 0,
+        message: '',
+        isShowToast: false
       }
     },
     mixins: [imageLoadWatchMixin, backTopMixin],
@@ -65,7 +71,8 @@
       DetailParamInfo,
       DetailCommentInfo,
       GoodsList,
-      DetailBottomBar
+      DetailBottomBar,
+      Toast    
     },
     created() {
       //1.保存传入的iid
@@ -151,12 +158,17 @@
         product.desc = this.goods.desc;
         product.price = this.goods.lowNowPrice;
         product.iid = this.iid;
+
         
         //2.将商品添加到购物车里
         // this.$store.state.cartList.push(product); //这方法不好通过mutations:{} 更改$store数据次啊会被监听
         // this.$store.commit('addCart',product); //最好用actions
         // this.$store.dispatch('addCart',product).then(console.log) //使用mapActions下映射过来的方法
-        this.addCart(product).then(console.log); 
+        if (Object.entries(product).every(item => item[1] != null)) { //判断product值是否全部取到
+          this.addCart(product).then(res => {
+            this.$toast.show(res, 1500);
+          }); 
+        }
       }
     },
     destroyed() {

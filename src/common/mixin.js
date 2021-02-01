@@ -4,7 +4,7 @@ import { BACK_POSITION } from 'common/const';
 
 export const imageLoadWatchMixin = {
   mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 200);
+    const refresh = debounce(this.$refs.scroll.refresh, 1000);
 
     this.imageLoadWatch = () => {
       refresh();

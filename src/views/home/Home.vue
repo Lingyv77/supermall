@@ -68,8 +68,7 @@
       showGoods() {
         return this.goods[this.currentType].list;
       }
-    }
-    ,
+    },
     created() {
       //1.请求多个数据
       this.getHomeMultidata();
