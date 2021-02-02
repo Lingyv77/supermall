@@ -149,6 +149,10 @@
         // 1.计算出用户拖动的距离
         this.currentX = e.touches[0].pageX;
         this.distance = this.currentX - this.startX; //拖动距离
+        if (this.distance >= this.totalWidth) 
+          this.distance = this.totalWidth;
+        else if (this.distance < -this.totalWidth)
+            this.distance = -this.totalWidth;
         let currentPosition = -this.currentIndex * this.totalWidth; //当前position
         let currentDistance = this.distance + currentPosition; //拖动后positions
   
